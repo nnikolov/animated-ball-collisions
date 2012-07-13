@@ -126,7 +126,7 @@ function update(ball) {
   // Collision with middle wall
   for(var i = 0; i < wall_number; i++) {
     wall = walls[i];
-    if(ball.x >= wall.x && ball.x <= wall.x + wall.w && ball.y >= wall.y && ball.y <= wall.y + wall.h) {
+    if(ball.x >= wall.x && ball.x <= wall.x + wall.w && ball.y >= wall.y - wall.h && ball.y <= wall.y + wall.h) {
         wall_color = ball.c;
         ball.vy = -ball.vy;
     }

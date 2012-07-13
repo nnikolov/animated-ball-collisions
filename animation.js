@@ -161,20 +161,4 @@ function update(ball) {
   }
 }
 
-// Function to check collision between ball and middle wall
-function collision_from_below(b, w) {
-    if (b.x + ball.r >= w.x && b.x - ball.r <= w.x + w.w) {
-        if(b.y >= (b.y - w.h) && w.y > 0){
-            return true;
-        }
-
-        else if(b.y <= w.h && w.y == 0) {
-            return true;
-        }
-
-        else return false;
-    }
-    return false;
-}
-
 animloop();

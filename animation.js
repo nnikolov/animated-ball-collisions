@@ -12,13 +12,12 @@ window.requestAnimFrame = (function(){
 
 // Initialize canvas and required variables
 var ball_number = Math.floor((Math.random()*20)+1);
-var wall_number = 1;
 
 // Draw balls or ball trails at random
 var draw_balls = Math.floor((Math.random()*2));
 
 var colors = [];
-colors.push("#FFFFFF");
+colors.push("#FF88FF");
 colors.push("#FF0000");
 colors.push("#00FF00");
 colors.push("#0000FF");
@@ -49,14 +48,14 @@ function draw() {
   if(draw_balls) {
     paintCanvas();
   }
+  for(var i = 0; i < walls.length; i++) {
+      wall = walls[i];
+      wall.draw();
+  }
   for(var i = 0; i < balls.length; i++) {
       ball = balls[i];
       ball.draw();
       update(ball);
-  }
-  for(var i = 0; i < walls.length; i++) {
-      wall = walls[i];
-      wall.draw();
   }
 }
 
@@ -92,14 +91,14 @@ function Ball() {
 }
 
 // Function for creating walls
-function Wall() {
+function Wall(height, width, wall_x, wall_y) {
     // Height and width
-    this.h = 5;
-    this.w = Math.floor((Math.random()*500)+1);
+    this.h = height;
+    this.w = width; //Math.floor((Math.random()*500)+1);
 
     // Wall's position
-    this.x = W/2 - this.w/2;
-    this.y = H/2 - this.h;
+    this.x = wall_x;
+    this.y = wall_y;
 
     // Function for drawing wall on canvas
     this.draw = function() {
@@ -114,9 +113,10 @@ for(var i = 0; i < ball_number; i++) {
 }
 
 // Push new walls into the walls[] array
-for(var i = 0; i < wall_number; i++) {
-  walls.push(new Wall());
-}
+walls.push(new Wall(10, 500, W/2 - 250, H/2 - 5));
+walls.push(new Wall(500, 10, W/2 - 5, H/2 - 250));
+walls.push(new Wall(300, 10, W/2 - 350, H/2 - 150));
+walls.push(new Wall(300, 10, W/2 + 350, H/2 - 150));
 
 function update(ball) {
   // Move the ball
@@ -124,11 +124,16 @@ function update(ball) {
   ball.y += ball.vy;
 
   // Collision with middle wall
-  for(var i = 0; i < wall_number; i++) {
+  for(var i = 0; i < walls.length; i++) {
     wall = walls[i];
-    if(ball.x >= wall.x && ball.x <= wall.x + wall.w && ball.y >= wall.y - wall.h && ball.y <= wall.y + wall.h) {
-        wall_color = ball.c;
-        ball.vy = -ball.vy;
+    if(ball.x >= wall.x && ball.x <= wall.x + wall.w && ball.y >= wall.y && ball.y <= wall.y + wall.h) {
+        //wall_color = ball.c;
+        if(ball.x >= wall.x + ball.r * 2 && ball.x <= wall.x + wall.w - ball.r * 2) {
+          ball.vy = -ball.vy;
+        }
+        else {
+          ball.vx = -ball.vx;
+        }
     }
   }
 

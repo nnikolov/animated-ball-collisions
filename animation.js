@@ -114,9 +114,18 @@ for(var i = 0; i < ball_number; i++) {
 
 // Push new walls into the walls[] array
 walls.push(new Wall(10, 500, W/2 - 250, H/2 - 5));
-walls.push(new Wall(500, 10, W/2 - 5, H/2 - 250));
+walls.push(new Wall(10, 500, W/2 - 250, H/2 - 150));
+walls.push(new Wall(10, 500, W/2 - 250, H/2 + 150));
 walls.push(new Wall(300, 10, W/2 - 350, H/2 - 150));
 walls.push(new Wall(300, 10, W/2 + 350, H/2 - 150));
+walls.push(new Wall(200, 10, W/2 + 450, H/2 - 250));
+walls.push(new Wall(200, 10, W/2 - 450, H/2 - 250));
+walls.push(new Wall(200, 10, W/2 + 450, H/2 + 50));
+walls.push(new Wall(200, 10, W/2 - 450, H/2 + 50));
+walls.push(new Wall(200, 10, W/2 + 250, H/2 - 250));
+walls.push(new Wall(200, 10, W/2 - 250, H/2 - 250));
+walls.push(new Wall(200, 10, W/2 + 250, H/2 + 50));
+walls.push(new Wall(200, 10, W/2 - 250, H/2 + 50));
 
 function update(ball) {
   // Move the ball

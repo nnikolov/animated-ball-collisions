@@ -14,7 +14,7 @@ window.requestAnimFrame = (function(){
 var ball_number = Math.floor((Math.random()*20)+1);
 
 // Draw balls or ball trails at random
-var draw_balls = Math.floor((Math.random()*2));
+var draw_background = Math.floor((Math.random()*10));
 
 var colors = [];
 colors.push("#FF88FF");
@@ -45,7 +45,7 @@ ctx.fillRect(0, 0, W, H);
 
 // Draw everything on canvas
 function draw() {
-  if(draw_balls) {
+  if(draw_background > 1) {
     paintCanvas();
   }
   for(var i = 0; i < walls.length; i++) {

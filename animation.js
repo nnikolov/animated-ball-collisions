@@ -135,13 +135,18 @@ function update(ball) {
   // Collision with middle wall
   for(var i = 0; i < walls.length; i++) {
     wall = walls[i];
+    // Check if the ball has entered the wall
     if(ball.x >= wall.x && ball.x <= wall.x + wall.w && ball.y >= wall.y && ball.y <= wall.y + wall.h) {
         //wall_color = ball.c;
         if(ball.x >= wall.x + ball.r * 2 && ball.x <= wall.x + wall.w - ball.r * 2) {
+          // Collision from top or bottom
           ball.vy = -ball.vy;
+          ball.collision_wall = i;
         }
         else {
+          // Collision from the side
           ball.vx = -ball.vx;
+          ball.collision_wall = i;
         }
     }
   }
